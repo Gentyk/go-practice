@@ -1,8 +1,9 @@
 package views
 
 import (
-	"testing"
 	"fmt"
+	"reflect"
+	"testing"
 )
 
 func TestSwapString(t *testing.T) {
@@ -30,9 +31,9 @@ func TestSwapString(t *testing.T) {
 
 func TestFib(t *testing.T) {
 	testCases := []struct {
-		n	int
+		n        int
 		expected int
-	} {
+	}{
 		{0, 0},
 		{2, 2},
 		{-1, 0},
@@ -53,9 +54,9 @@ func TestFib(t *testing.T) {
 
 func TestFib2(t *testing.T) {
 	testCases := []struct {
-		n	int
+		n        int
 		expected int
-	} {
+	}{
 		{0, 0},
 		{2, 2},
 		{-1, 0},
@@ -69,6 +70,55 @@ func TestFib2(t *testing.T) {
 				t.Errorf("get %d, expected %d", result, testCase.expected)
 			} else {
 				fmt.Printf("fib2: success case %d \n", ind)
+			}
+		})
+	}
+}
+
+func TestBubleSort(t *testing.T) {
+	testCases := []struct {
+		startArray    []int
+		expectedArray []int
+	}{
+		{[]int{}, []int{}},
+		{[]int{1}, []int{1}},
+		{[]int{3, 2, 1}, []int{1, 2, 3}},
+		{[]int{4, 2, 3, 1}, []int{1, 2, 3, 4}},
+	}
+
+	for ind, tc := range testCases {
+		t.Run("bubleSort", func(t *testing.T) {
+			result := tc.startArray
+			bumbleSort(result)
+			if reflect.DeepEqual(result, tc.expectedArray) {
+				fmt.Printf("bubleSort: success case %d \n", ind)
+			} else {
+				t.Errorf("get %d, expected %d", result, tc.expectedArray)
+			}
+		})
+	}
+}
+
+func TestQuickSort(t *testing.T) {
+	testCases := []struct {
+		startArray    []int
+		expectedArray []int
+	}{
+		{[]int{}, []int{}},
+		{[]int{1}, []int{1}},
+		{[]int{3, 2, 1}, []int{1, 2, 3}},
+		{[]int{4, 2, 3, 1}, []int{1, 2, 3, 4}},
+		{[]int{4, 5, 2, 7, 3, 0, 1}, []int{0, 1, 2, 3, 4, 5, 7}},
+	}
+
+	for ind, tc := range testCases {
+		t.Run("quickSort", func(t *testing.T) {
+			result := tc.startArray
+			quickSort(result, 0, len(result)-1)
+			if reflect.DeepEqual(result, tc.expectedArray) {
+				fmt.Printf("quickSort: success case %d \n", ind)
+			} else {
+				t.Errorf("get %d, expected %d", result, tc.expectedArray)
 			}
 		})
 	}
