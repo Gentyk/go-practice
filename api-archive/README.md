@@ -18,6 +18,8 @@ https://go.dev/doc/tutorial/web-service-gin
 `go get .`
 форматирование
 `gofmt -w .`
+тесты
+`go test -v ./internal`
 
 запуск
 `go run .`
