@@ -19,16 +19,10 @@ func main() {
 	}()
 
 	go func() {
-		for {
-			data, ok := <-chan1
-
-			if !ok {
-				s.Done()
-				return
-			} else {
-				fmt.Println(data)
-			}
+		for data := range chan1 {
+			fmt.Println(data)
 		}
+		s.Done()
 	}()
 
 	s.Wait()
