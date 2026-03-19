@@ -2,10 +2,10 @@ package main
 
 import "fmt"
 
-func swap(s string) string{
+func swap(s string) string {
 	fmt.Println(s)
 	tr := []rune(s)
-	for i := 0; i<len(s)/2; i++ {
+	for i := 0; i < len(s)/2; i++ {
 		tr[i], tr[len(s)-1-i] = tr[len(s)-1-i], tr[i]
 	}
 	s2 := string(tr)
@@ -21,7 +21,7 @@ func delete(s string, t int) string {
 	return s2
 }
 
-func main(){
+func main() {
 	swap("abcde")
 	delete("abcde", 1)
 	swap("abcdef")

@@ -16,8 +16,8 @@ func diap(arr []int) string {
 	sort.Ints(arr)
 	start := arr[0]
 	end := arr[0]
-	for i := 1; i< len(arr); i++ {
-		if arr[i] - end <= 1 {
+	for i := 1; i < len(arr); i++ {
+		if arr[i]-end <= 1 {
 			end = arr[i]
 		} else {
 			if result != "" {
@@ -43,5 +43,5 @@ func diap(arr []int) string {
 }
 
 func main() {
-	fmt.Println(diap([]int{2,2,44,43,5}))
+	fmt.Println(diap([]int{2, 2, 44, 43, 5}))
 }
