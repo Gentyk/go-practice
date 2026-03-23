@@ -1,9 +1,11 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	 _ "net/http/pprof"
 )
 
 // album represents data about a record album.
@@ -22,6 +24,11 @@ var albums = []album{
 }
 
 func main() {
+	// Запустим HTTP-сервер для обработки запросов на профилирование
+    go func() {
+        log.Println(http.ListenAndServe("localhost:6060", nil))
+    }()
+
 	router := gin.Default()
 	router.GET("/albums", getAlbums)
 	router.POST("/albums", postAlbums)

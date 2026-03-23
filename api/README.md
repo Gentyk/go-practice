@@ -23,7 +23,8 @@ curl http://localhost:8080/albums \
 ```
 
 ---------------------------------------------------------------
-bench
+## bench
+https://pkg.go.dev/testing
 ```
  go test -bench=Benchmar*
 ```
@@ -34,9 +35,16 @@ bench
 3. -benchtime — установить минимальное время выполнения бенчмарка.
 4. -count — количество запусков каждого бенчмарка (для получения стабильных результатов
 5. -cpu — указать список значений GOMAXPROCS для тестирования.
+много еще режимов
 10. -timeout — максимальное время выполнения теста/бенчмарка.
 11. -o — скомпилировать тесты в отдельный исполняемый файл (без запуска).
 ```
  go test -bench=Bench* -o my_benchmarks.test
  ./my_benchmarks.test -test.bench
 ```
+---------------------------------------------------------------
+## pprof
+https://purpleschool.ru/knowledge-base/golang/project-launch/using-pprof
+
+http://localhost:6060/debug/pprof/
+для проверки
