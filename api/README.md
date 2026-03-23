@@ -48,3 +48,8 @@ https://purpleschool.ru/knowledge-base/golang/project-launch/using-pprof
 
 http://localhost:6060/debug/pprof/
 для проверки
+-----------------------------------------------------------------
+## trace 
+```
+ go tool trace trace.out
+```

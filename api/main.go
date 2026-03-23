@@ -3,9 +3,11 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
+	"runtime/trace"
 
 	"github.com/gin-gonic/gin"
-	 _ "net/http/pprof"
+	_ "net/http/pprof"
 )
 
 // album represents data about a record album.
@@ -25,9 +27,22 @@ var albums = []album{
 
 func main() {
 	// Запустим HTTP-сервер для обработки запросов на профилирование
-    go func() {
-        log.Println(http.ListenAndServe("localhost:6060", nil))
-    }()
+	go func() {
+		log.Println(http.ListenAndServe("localhost:6060", nil))
+	}()
+
+	// Создаём файл для вывода трассировки
+	f, err := os.Create("trace.out")
+	if err != nil {
+		log.Fatalf("failed to create trace output file: %v", err)
+	}
+	defer f.Close()
+
+	// Запускаем трассировку
+	if err := trace.Start(f); err != nil {
+		log.Fatalf("failed to start trace: %v", err)
+	}
+	defer trace.Stop() // Останавливаем трассировку при выходе
 
 	router := gin.Default()
 	router.GET("/albums", getAlbums)
