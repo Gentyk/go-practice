@@ -5,6 +5,7 @@ import (
 	"sync"
 	"time"
 )
+
 func worker(ch chan struct{}, wg *sync.WaitGroup) {
 	defer wg.Done()
 	defer func() { <-ch }()
