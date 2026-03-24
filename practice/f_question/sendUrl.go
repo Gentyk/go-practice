@@ -1,14 +1,14 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"net/http"
+	"sync"
 	"time"
 )
 
-func sender(url string, ctx context.Context, chan_in chan<- string) error {
-	_, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+func sender(url string, client *http.Client, chan_in chan<- string) error {
+	_, err := client.Get(url)
 	s := url + " url - "
 	if err != nil {
 		fmt.Println("ok")
@@ -31,19 +31,29 @@ func main() {
 		"http://ya.ru",
 		"http://ёёёё",
 	}
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
+
+	var wg sync.WaitGroup
+
+	client := http.Client{
+		Timeout: 1 * time.Second,
+	}
 
 	chan1 := make(chan string)
 
 	for _, i := range urls {
-		go func(url string, ctx context.Context, chan_in chan<- string) {
-			sender(url, ctx, chan1)
-		}(i, ctx, chan1)
+		wg.Add(1)
+		go func(url string, client *http.Client, chan_in chan<- string, wg *sync.WaitGroup) {
+			defer wg.Done()
+			sender(url, client, chan1)
+		}(i, &client, chan1, &wg)
 	}
 
-	for i := 0; i < len(urls); i++ {
-		fmt.Println(<-chan1)
+	go func() {
+		wg.Wait()
+		close(chan1)
+	}()
+
+	for i := range chan1 {
+		fmt.Println(i)
 	}
-	close(chan1)
 }
