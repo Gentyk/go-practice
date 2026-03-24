@@ -1,5 +1,7 @@
 package main
 
+// несколько связанных горутин
+
 import (
 	"fmt"
 	"sync"

@@ -1,5 +1,7 @@
 package main
 
+// просто waitgroup
+
 import (
 	"fmt"
 	"sync"
