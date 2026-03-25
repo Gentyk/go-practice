@@ -1,6 +1,11 @@
+ист:
+https://www.youtube.com/watch?v=z-mHhobE0Pw&t=789s
+https://www.youtube.com/watch?v=_CjzNp67LVg
+
+```
 go mod init example/web-service-gin/go-practice/grpc-practice
 go mod tidy
-
+```
 
 1. установка зависимоcтей
 
