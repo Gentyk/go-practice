@@ -1,0 +1,33 @@
+1. установка зависимоcтей
+
+```
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+```
+
+linux
+```
+export PATH="$PATH:$(go env GOPATH)/bin"
+```
+windows
+# Если установлен winget (Windows 10/11)
+winget install Google.Protobuf```
+
+
+# Получаем текущий GOPATH
+$goPath = go env GOPATH
+
+# Добавляем в переменную Path пользователя
+$userPath = [Environment]::GetEnvironmentVariable("Path", "User")
+[Environment]::SetEnvironmentVariable("Path", "$userPath;$goPath\bin", "User")
+```
+
+2. создание и заполнение example.proto
+3. компиляция
+
+```
+protoc -I .\api\proto `
+       --go_out=. --go_opt=paths=source_relative `
+       --go-grpc_out=. --go-grpc_opt=paths=source_relative `
+       .\api\proto\example.proto
+```

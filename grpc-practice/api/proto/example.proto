@@ -1,0 +1,25 @@
+// Объявление синтаксиса (обязательно!)
+syntax = "proto3";
+
+// Объявление пакета (избегает конфликтов имен)
+package api;
+
+option go_package = "pkg/api;api";
+
+// Определение сервиса (для gRPC)
+service Sender {
+    rpc Send(Request) returns (Response);
+}
+
+// Определение сообщения
+message Request {
+    // Поля
+    string field1 = 1;
+    int32 field2 = 2;
+}
+
+// Определение сообщения
+message Response {
+    // Поля
+    string result = 1;
+}
