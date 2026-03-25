@@ -1,3 +1,7 @@
+go mod init example/web-service-gin/go-practice/grpc-practice
+go mod tidy
+
+
 1. установка зависимоcтей
 
 ```
@@ -30,4 +34,10 @@ protoc -I .\api\proto `
         --go_out=pkg\api --go_opt=paths=source_relative `
         --go-grpc_out=pkg\api --go-grpc_opt=paths=source_relative `
         .\api\proto\example.proto
+```
+
+---
+4. создать grpc сервер и собрать
+```
+go build .\cmd\server\
 ```
