@@ -1,6 +1,8 @@
 // You can edit this code!
 // Click here and start typing.
-package avito3
+package avito1
+
+// Merge N каналов. Написать ф-цию func merge(cs ...chan int) (<- out chan int). Все значения должны перенаправляться в out канал.
 
 import (
 	"fmt"

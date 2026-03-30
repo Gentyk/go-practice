@@ -1,4 +1,6 @@
-package avito4
+package avito1
+
+//Необходимо сделать запрос по каждому урлу. Если в респонс код 200, в stdout OK 200, любой другой код - Error <url>.
 
 import (
 	"fmt"
