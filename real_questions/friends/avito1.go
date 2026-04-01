@@ -8,7 +8,7 @@
 //   - если ответ не приходит за hedgedDelay, сдеалть еще 2 запроса в replicas
 //   - продолжать ждать ответ от master, пока не закончится maxDelay
 
-package avito1
+package friends
 
 import (
 	"context"

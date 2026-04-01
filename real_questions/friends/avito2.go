@@ -1,7 +1,7 @@
 // /////////////////////
 // ///// Задача 2
 // /////////////////////
-package avito1
+package friends
 
 import (
 	"context"
