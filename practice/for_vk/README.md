@@ -27,3 +27,15 @@
 создать приложение, которое соответствует DDD, использует бд и обсурвабилити
 
 https://gin-gonic.com/ru/docs/quickstart/
+
+
+----
+запуск
+
+```
+go get -u .
+go mod tidy
+```
+
+http://localhost:8080/data
+http://localhost:8080/metrics

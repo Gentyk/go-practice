@@ -15,7 +15,18 @@ var DataCallsTotal = prometheus.NewCounter(
 	},
 )
 
+var DataLatencySeconds = prometheus.NewHistogram(
+	prometheus.HistogramOpts{
+		Name:    "data_latency_seconds",
+		Help:    "Latency of data business function in seconds.",
+		Buckets: prometheus.DefBuckets,
+	},
+)
+
 func GetData(ctx context.Context) string {
+	start := time.Now()
+	defer DataLatencySeconds.Observe(time.Since(start).Seconds())
+
 	DataCallsTotal.Inc()
 	slog.LogAttrs(ctx, slog.LevelInfo, "GetData running")
 	time.Sleep(10 * time.Millisecond)

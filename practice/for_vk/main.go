@@ -17,7 +17,7 @@ func main() {
 		AddSource: true,
 	})
 	slog.SetDefault(slog.New(handler))
-	prometheus.MustRegister(domain.DataCallsTotal)
+	prometheus.MustRegister(domain.DataCallsTotal, domain.DataLatencySeconds)
 
 	router := gin.Default()
 	router.GET("/metrics", gin.WrapH(promhttp.Handler()))
